@@ -61,7 +61,7 @@ class BannerWidget extends Widget
 
         // Если площадка в режиме слайдера - выбираем все баннеры. В противном случае - рандомно выбираем 1 баннер из актиыных
         if ($this->place->slider == AdsPlace::SLIDER_ENABLED) {
-            $this->banners = $this->place->bannersActive;
+            $this->banners = $this->bannersActive;
             foreach ($this->banners as $banner)
                 $banner->increaseViews();
             $this->view = 'bannerWidgetSlider';
