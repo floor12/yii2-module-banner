@@ -59,6 +59,7 @@ class AdminController extends Controller
     public function init()
     {
         $this->layout = Yii::$app->getModule('banner')->adminLayout;
+        parent::init();
     }
 
     /** Страница управления баннерами
