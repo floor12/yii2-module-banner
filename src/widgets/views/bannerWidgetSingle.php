@@ -41,8 +41,8 @@ if ($banners->type == AdsBanner::TYPE_IMAGE
                         type='image/webp' 
                         media='(max-width: {$adaptiveBreakpoint}px)' 
                         srcset='
-                            {$banners->file_mobile->getPreviewWebPath($place->mobile_width)} 1x, 
-                            {$banners->file_mobile->getPreviewWebPath(($place->mobile_width * 2))} 2x'>
+                            {$banners->file_mobile->getPreviewWebPath($place->mobile_width,true)} 1x, 
+                            {$banners->file_mobile->getPreviewWebPath(($place->mobile_width * 2),true)} 2x'>
                     <source 
                         type='{$banners->file_desktop->content_type}' 
                         media='(min-width: {$adaptiveBreakpoint}px)' 

@@ -45,13 +45,13 @@ foreach ($banners as $banner) {
     if ($banner->type === AdsBanner::TYPE_IMAGE)
         if ($banner->file_mobile)
 
-    if (
-        $banner->type == AdsBanner::TYPE_IMAGE &&
-        $banner->file_desktop &&
-        is_file($banner->file_desktop->getRootPath())
-    )
-        if ($banner->file_mobile && is_file($banner->file_mobile->getRootPath()))
-            $img = "<picture class='banner-widget'>
+            if (
+                $banner->type == AdsBanner::TYPE_IMAGE &&
+                $banner->file_desktop &&
+                is_file($banner->file_desktop->getRootPath())
+            )
+                if ($banner->file_mobile && is_file($banner->file_mobile->getRootPath()))
+                    $img = "<picture class='banner-widget'>
                     <source 
                         type='image/webp' 
                         media='(min-width: {$adaptiveBreakpoint}px)' 
@@ -63,8 +63,8 @@ foreach ($banners as $banner) {
                         type='image/webp' 
                         media='(max-width: {$adaptiveBreakpoint}px)' 
                         srcset='
-                            {$banner->file_mobile->getPreviewWebPath($place->mobile_width)} 1x, 
-                            {$banner->file_mobile->getPreviewWebPath(($place->mobile_width * 2) )} 2x'>
+                            {$banner->file_mobile->getPreviewWebPath($place->mobile_width,true)} 1x, 
+                            {$banner->file_mobile->getPreviewWebPath(($place->mobile_width * 2),true )} 2x'>
                     <source 
                         type='{$banner->file_desktop->content_type}' 
                         media='(min-width: {$adaptiveBreakpoint}px)' 
@@ -82,8 +82,8 @@ foreach ($banners as $banner) {
                         class='img-responsive' 
                         alt='{$banner->title}'>
                 </picture>";
-        else
-            $img = "<picture class='banner-widget'>
+                else
+                    $img = "<picture class='banner-widget'>
                     <source 
                         type='image/webp' 
                         srcset='
@@ -101,12 +101,12 @@ foreach ($banners as $banner) {
                         alt='{$banner->title}'>
                 </picture>";
 
-    else
-        $img = Html::tag('iframe', null, [
-            'src' => $banner->webPath,
-            'class' => 'f12-rich-banner',
-            'data-href' => $banner->href ? Url::toRoute(['/banner/redirect', 'id' => $banner->id]) : '',
-        ]);
+            else
+                $img = Html::tag('iframe', null, [
+                    'src' => $banner->webPath,
+                    'class' => 'f12-rich-banner',
+                    'data-href' => $banner->href ? Url::toRoute(['/banner/redirect', 'id' => $banner->id]) : '',
+                ]);
 
 
     if ($banner->href && $banner->type == AdsBanner::TYPE_IMAGE)
