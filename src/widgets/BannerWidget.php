@@ -46,6 +46,7 @@ class BannerWidget extends Widget
             $bannersActive = AdsBanner::find()
                 ->leftJoin('ads_place_banner', 'ads_place_banner.banner_id=ads_banner.id')
                 ->active()
+                ->orderBy('weight DESC')
                 ->andWhere(['place_id' => $place->id])
                 ->all();
             return [
