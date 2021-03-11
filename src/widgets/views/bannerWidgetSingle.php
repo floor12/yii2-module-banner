@@ -77,12 +77,21 @@ if ($banners->type == AdsBanner::TYPE_IMAGE
                         class='img-responsive' 
                         alt='{$banners->title}'>
                 </picture>";
-else
+else {
+    $style = "border:0; height: {$place->desktop_height}px; ";
+    if ($place->desktop_width_max) {
+        $style .= " width: 100%; ";
+    } else {
+        $style .= " width: {$place->desktop_width}px; ";
+    }
+
     $img = Html::tag('iframe', null, [
         'src' => $banners->webPath,
         'class' => 'f12-rich-banner',
+        'style' => $style,
         'data-href' => $banners->href ? Url::toRoute(['/banner/redirect', 'id' => $banners->id]) : '',
     ]);
+}
 
 
 if ($banners->href && $banners->type == AdsBanner::TYPE_IMAGE)

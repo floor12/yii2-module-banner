@@ -24,6 +24,8 @@ use yii\db\ActiveRecord;
  * @property int $slider_arrows Показывать стрелки слайдера
  * @property string $arrows Возвращает строковое true или false для вставки в JS
  * @property string $vertical Возвращает строковое true или false для вставки в JS
+ * @property boolean $desktop_width_max Растягивать по ширине
+ * @property boolean $mobile_width_max Растягивать по ширине
  * @property AdsBanner[] $banners Связанные баннеры
  * @property AdsBanner[] $bannersActive Активные баннеры
  *
@@ -63,6 +65,7 @@ class AdsPlace extends ActiveRecord
     {
         return [
             [['title', 'desktop_width', 'desktop_height'], 'required'],
+            [['desktop_width_max', 'mobile_width_max'], 'boolean'],
             [['desktop_width', 'desktop_height', 'mobile_width', 'mobile_height', 'status', 'slider', 'slider_direction', 'slider_arrows', 'slider_time'], 'integer'],
             [['title'], 'string', 'max' => 255],
             ['slider_time', 'default', 'value' => '3000'],
@@ -104,6 +107,7 @@ class AdsPlace extends ActiveRecord
     {
         return $this->getBanners()->with('file_desktop', 'file_mobile')->orderBy('weight DESC, id')->active();
     }
+
     /**
      * {@inheritdoc}
      */
@@ -120,7 +124,9 @@ class AdsPlace extends ActiveRecord
             'slider' => 'Активировать слайдер',
             'slider_direction' => 'Направление слайдера',
             'slider_arrows' => 'Показывать стрелки',
-            'slider_time' => 'Длительность слайда (мс)'
+            'slider_time' => 'Длительность слайда (мс)',
+            'desktop_width_max' => 'Растягивать по ширине',
+            'mobile_width_max' => 'Растягивать по ширине'
         ];
     }
 

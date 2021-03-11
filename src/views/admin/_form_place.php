@@ -44,12 +44,14 @@ $this->registerJs("updateAdsPlaceForm()");
     <div class="row">
         <div class="col-md-3">
             <?= $form->field($model, 'desktop_width') ?>
+            <?= $form->field($model, 'desktop_width_max')->checkbox() ?>
         </div>
         <div class="col-md-3">
             <?= $form->field($model, 'desktop_height') ?>
         </div>
         <div class="col-md-3">
             <?= $form->field($model, 'mobile_width') ?>
+            <?= $form->field($model, 'mobile_width_max')->checkbox() ?>
         </div>
         <div class="col-md-3">
             <?= $form->field($model, 'mobile_height') ?>
