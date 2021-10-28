@@ -111,6 +111,8 @@ foreach ($banners as $banner) {
 
     if ($banner->href && $banner->type == AdsBanner::TYPE_IMAGE)
         echo Html::a($img, ['/banner/redirect', 'id' => $banner->id], [$targetBlank ? ['target' => '_blank', 'id' => ''] : []]);
+    elseif ($banner->onclick && $banner->type == AdsBanner::TYPE_IMAGE)
+        echo Html::tag('span', $img, ['onclick' => $banner->onclick]);
     else
         echo $img;
 }

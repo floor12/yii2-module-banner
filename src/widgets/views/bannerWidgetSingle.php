@@ -96,6 +96,8 @@ else {
 
 if ($banners->href && $banners->type == AdsBanner::TYPE_IMAGE)
     echo Html::a($img, ['/banner/redirect', 'id' => $banners->id], $targetBlank ? ['target' => '_blank', 'id' => ''] : []);
+elseif ($banners->onclick && $banners->type == AdsBanner::TYPE_IMAGE)
+    echo Html::tag('span', $img, ['onclick' => $banners->onclick]);
 else
     echo $img;
 

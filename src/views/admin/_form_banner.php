@@ -66,6 +66,8 @@ $form = ActiveForm::begin([
         </div>
     </div>
 
+    <?= $form->field($model, 'onclick') ?>
+
     <?= $form->field($model, 'place_ids')->widget(Select2::class, [
         'data' => $places,
         'language' => 'ru',
