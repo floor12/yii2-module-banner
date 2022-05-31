@@ -14,12 +14,14 @@ use floor12\banner\Module;
 use Yii;
 use yii\base\Widget;
 use yii\caching\TagDependency;
+use yii\helpers\Html;
 
 class BannerWidget extends Widget
 {
     public $place_id;
     public $_place_id;
     public $targetBlank = true;
+    public $showSubLink = false;
     private $place;
     private $banners;
     private $view;
@@ -85,13 +87,18 @@ class BannerWidget extends Widget
     {
         if (!$this->banners)
             return "";
-        return $this->render($this->view, [
+        $renderedBanner = $this->render($this->view, [
             'banners' => $this->banners,
             'place' => $this->place,
             'id' => "banner" . rand(99999, 9999999),
             'targetBlank' => $this->targetBlank,
             'adaptiveBreakpoint' => Yii::$app->getModule('banner')->adaptiveBreakpoint
         ]);
+        if ($this->showSubLink && $this->place->slider == AdsPlace::SLIDER_DISABLED) {
+            return $renderedBanner . Html::a($this->banners->title, ['/banner/redirect', 'id' => $this->banners->id], $this->targetBlank ? ['target' => '_blank', 'id' => ''] : []);
+        }
+        return $renderedBanner;
+
     }
 
 }
