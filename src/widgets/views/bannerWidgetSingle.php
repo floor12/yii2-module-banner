@@ -76,13 +76,14 @@ if ($banners->type == AdsBanner::TYPE_IMAGE
                         class='img-responsive' 
                         alt='{$banners->title}'>
                 </picture>";
+    
 elseif ($banners->type == AdsBanner::TYPE_VIDEO) {
 
-    $img = '<video autoplay muted playsinline loop>';
+    $img = '<video autoplay muted playsinline>';
     if ($banners->file_mobile) {
-        $img .= "<source srcset='{$banners->file_mobile->getHref()}' type='video/mp4' media='(max-width:480px)'>";
+        $img .= "<source src='{$banners->file_desktop->getHref()}' type='video/mp4' media='(max-width:480px)'>";
     }
-    $img .= "<source type='video/mp4' src='{$banners->file_desktop->getHref()}' type='video/mp4' media='(min-width:480px)'>";
+    $img .= "<source type='video/mp4' src='{$banners->file_desktop->getHref()}' >";
     $img .= '</video>';
 
 } else {
