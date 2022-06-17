@@ -27,7 +27,6 @@ if ($banners->type == AdsBanner::TYPE_IMAGE
     && $banners->file_desktop &&
     is_file($banners->file_desktop->getRootPath()))
 
-
     if ($banners->file_mobile)
         $img = "<picture class='banner-widget'>
                     <source 
@@ -77,7 +76,16 @@ if ($banners->type == AdsBanner::TYPE_IMAGE
                         class='img-responsive' 
                         alt='{$banners->title}'>
                 </picture>";
-else {
+if ($banners->type == AdsBanner::TYPE_VIDEO) {
+
+    $img = '<video autoplay muted playsinline loop>';
+    if ($banners->file_mobile) {
+        $img .= "<source srcset='{$banners->file_mobile->getHref()}' type='video/mp4' media='(max-width:480px)'>";
+    }
+    $img .= "<source type='video/mp4' src='{$banners->file_desktop->getHref()}' type='video/mp4' media='(min-width:480px)'>";
+    $img .= '</video>';
+
+} else {
     $style = "border:0; height: {$place->desktop_height}px; ";
     if ($place->desktop_width_max) {
         $style .= " width: 100%; ";
@@ -87,15 +95,15 @@ else {
 
     $img = Html::tag('iframe', null, [
         'src' => $banners->webPath,
-        'class' => 'f12-rich-banner',
+        'class' => 'f12 - rich - banner',
         'style' => $style,
-        'data-href' => $banners->href ? Url::toRoute(['/banner/redirect', 'id' => $banners->id]) : '',
+        'data - href' => $banners->href ? Url::toRoute([' / banner / redirect', 'id' => $banners->id]) : '',
     ]);
 }
 
 
 if ($banners->href && $banners->type == AdsBanner::TYPE_IMAGE)
-    echo Html::a($img, ['/banner/redirect', 'id' => $banners->id], $targetBlank ? ['target' => '_blank', 'id' => ''] : []);
+    echo Html::a($img, [' / banner / redirect', 'id' => $banners->id], $targetBlank ? ['target' => '_blank', 'id' => ''] : []);
 elseif ($banners->onclick && $banners->type == AdsBanner::TYPE_IMAGE)
     echo Html::tag('span', $img, ['onclick' => $banners->onclick]);
 else

@@ -45,6 +45,7 @@ class AdsBanner extends ActiveRecord
 
     const TYPE_IMAGE = 0;
     const TYPE_RICH = 1;
+    const TYPE_VIDEO = 2;
 
     /**
      * {@inheritdoc}
@@ -66,8 +67,8 @@ class AdsBanner extends ActiveRecord
             [['show_start', 'show_end'], 'safe'],
             [['title', 'onclick'], 'string', 'max' => 255],
             [['href'], 'string', 'max' => 2048],
-            ['file_desktop', 'file', 'checkExtensionByMimeType' => false, 'extensions' => ['jpg', 'jpeg', 'png', 'webp', 'gif', 'zip', 'svg'], 'maxFiles' => 1],
-            ['file_mobile', 'file', 'checkExtensionByMimeType' => false, 'extensions' => ['jpg', 'jpeg', 'png', 'webp', 'gif', 'zip', 'svg'], 'maxFiles' => 1],
+            ['file_desktop', 'file', 'checkExtensionByMimeType' => false, 'extensions' => ['mp4', 'jpg', 'jpeg', 'png', 'webp', 'gif', 'zip', 'svg'], 'maxFiles' => 1],
+            ['file_mobile', 'file', 'checkExtensionByMimeType' => false, 'extensions' => ['mp4', 'jpg', 'jpeg', 'png', 'webp', 'gif', 'zip', 'svg'], 'maxFiles' => 1],
             ['file_desktop', 'required'],
             [['place_ids'], 'each', 'rule' => ['integer']],
             ['href', 'url', 'defaultScheme' => 'https'],
@@ -119,7 +120,14 @@ class AdsBanner extends ActiveRecord
         return [
             'files' => [
                 'class' => FileBehaviour::class,
-                'attributes' => ['file_desktop', 'file_mobile']
+                'attributes' => [
+                    'file_desktop' => [
+                        'videoWidth' => 1920,
+                    ],
+                    'file_mobile' => [
+                        'videoWidth' => 380,
+                    ]
+                ]
             ],
             'ManyToManyBehavior' => [
                 'class' => LinkerBehavior::class,
@@ -229,9 +237,11 @@ class AdsBanner extends ActiveRecord
      */
     public function getType()
     {
-
-        if ($this->file_desktop && $this->file_desktop->type != FileType::IMAGE)
+        if ($this->file_desktop && $this->file_desktop->type == FileType::FILE)
             return self::TYPE_RICH;
+
+        if ($this->file_desktop && $this->file_desktop->type == FileType::VIDEO)
+            return self::TYPE_VIDEO;
 
         return self::TYPE_IMAGE;
     }
@@ -244,6 +254,8 @@ class AdsBanner extends ActiveRecord
     public function getWebPath()
     {
         if ($this->type == self::TYPE_IMAGE)
+            return;
+        if ($this->type == self::TYPE_VIDEO)
             return;
         else {
             $this->publish();
@@ -274,6 +286,8 @@ class AdsBanner extends ActiveRecord
     public function getWebrootPath()
     {
         if ($this->type == self::TYPE_IMAGE)
+            return;
+        if ($this->type == self::TYPE_VIDEO)
             return;
         else {
             return Yii::getAlias(Yii::$app->getModule('banner')->bannersWebRootPath . '/' . $this->file_desktop->hash . '/');
