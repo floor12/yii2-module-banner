@@ -76,7 +76,7 @@ if ($banners->type == AdsBanner::TYPE_IMAGE
                         class='img-responsive' 
                         alt='{$banners->title}'>
                 </picture>";
-if ($banners->type == AdsBanner::TYPE_VIDEO) {
+elseif ($banners->type == AdsBanner::TYPE_VIDEO) {
 
     $img = '<video autoplay muted playsinline loop>';
     if ($banners->file_mobile) {
