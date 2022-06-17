@@ -76,10 +76,10 @@ if ($banners->type == AdsBanner::TYPE_IMAGE
                         class='img-responsive' 
                         alt='{$banners->title}'>
                 </picture>";
-    
+
 elseif ($banners->type == AdsBanner::TYPE_VIDEO) {
 
-    $img = '<video autoplay muted playsinline>';
+    $img = '<video autoplay muted playsinline loop>';
     if ($banners->file_mobile) {
         $img .= "<source src='{$banners->file_desktop->getHref()}' type='video/mp4' media='(max-width:480px)'>";
     }
