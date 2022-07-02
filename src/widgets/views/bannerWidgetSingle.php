@@ -81,9 +81,9 @@ elseif ($banners->type == AdsBanner::TYPE_VIDEO) {
 
     $img = '<video autoplay muted playsinline loop>';
     if ($banners->file_mobile) {
-        $img .= "<source src='{$banners->file_mobile->getHref()}' type='video/mp4' media='(min-width: 480px)'>";
+        $img .= "<source src='{$banners->file_mobile->getHref()}' type='video/mp4'>";
     }
-    $img .= "<source src='{$banners->file_desktop->getHref()}' type='video/mp4'  media='(max-width: 480px)'>";
+    $img .= "<source src='{$banners->file_desktop->getHref()}' type='video/mp4'>";
     $img .= '</video>';
 
 } else {
