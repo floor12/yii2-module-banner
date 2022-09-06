@@ -71,7 +71,6 @@ class AdsBanner extends ActiveRecord
             ['file_mobile', 'file', 'checkExtensionByMimeType' => false, 'extensions' => ['mp4', 'jpg', 'jpeg', 'png', 'webp', 'gif', 'zip', 'svg'], 'maxFiles' => 1],
             ['file_desktop', 'required'],
             [['place_ids'], 'each', 'rule' => ['integer']],
-            ['href', 'url', 'defaultScheme' => 'https'],
             ['weight', 'default', 'value' => '0'],
         ];
     }
