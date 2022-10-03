@@ -20,6 +20,7 @@ use ZipArchive;
  * @property int $id
  * @property int $status Выключить
  * @property string $title Название баннера
+ * @property string $subtitle Подзаголовк баннера
  * @property string $show_start Начало показа
  * @property string $show_end Окончание показа
  * @property string $href Ссылка
@@ -70,6 +71,7 @@ class AdsBanner extends ActiveRecord
             ['file_desktop', 'file', 'checkExtensionByMimeType' => false, 'extensions' => ['mp4', 'jpg', 'jpeg', 'png', 'webp', 'gif', 'zip', 'svg'], 'maxFiles' => 1],
             ['file_mobile', 'file', 'checkExtensionByMimeType' => false, 'extensions' => ['mp4', 'jpg', 'jpeg', 'png', 'webp', 'gif', 'zip', 'svg'], 'maxFiles' => 1],
             ['file_desktop', 'required'],
+            ['subtitle', 'string'],
             [['place_ids'], 'each', 'rule' => ['integer']],
             ['weight', 'default', 'value' => '0'],
         ];
@@ -107,7 +109,8 @@ class AdsBanner extends ActiveRecord
             'place_ids' => 'Связанные площадки',
             'weight' => 'Вес баннера',
             'type' => 'Тип баннера',
-            'archive' => 'Архивный'
+            'archive' => 'Архивный',
+            'subtitle' => 'Подзаголовок баннера',
         ];
     }
 

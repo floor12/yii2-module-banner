@@ -57,6 +57,8 @@ $form = ActiveForm::begin([
         </div>
     </div>
 
+    <?= $form->field($model, 'subtitle') ?>
+
     <div class="row">
         <div class="col-md-9">
             <?= $form->field($model, 'href') ?>

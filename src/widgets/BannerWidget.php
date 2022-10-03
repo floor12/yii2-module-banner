@@ -22,6 +22,7 @@ class BannerWidget extends Widget
     public $_place_id;
     public $targetBlank = true;
     public $showSubLink = false;
+    public $showSubtitle = false;
     private $place;
     private $banners;
     private $view;
@@ -95,8 +96,14 @@ class BannerWidget extends Widget
             'adaptiveBreakpoint' => Yii::$app->getModule('banner')->adaptiveBreakpoint
         ]);
         if ($this->showSubLink && $this->place->slider == AdsPlace::SLIDER_DISABLED) {
-            return $renderedBanner . Html::a($this->banners->title, ['/banner/redirect', 'id' => $this->banners->id], $this->targetBlank ? ['target' => '_blank', 'id' => ''] : []);
+            $renderedBanner .= Html::a($this->banners->title, ['/banner/redirect', 'id' => $this->banners->id], $this->targetBlank ? ['target' => '_blank'] : []);
         }
+
+        if ($this->showSubLink && $this->place->slider == AdsPlace::SLIDER_DISABLED) {
+            $renderedBanner .= Html::tag('p', $this->banners->subtitle);
+        }
+
+
         return $renderedBanner;
 
     }
