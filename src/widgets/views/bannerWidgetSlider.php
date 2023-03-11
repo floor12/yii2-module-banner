@@ -77,6 +77,7 @@ foreach ($banners as $banner) {
                     <img 
                         src='{$banner->file_desktop->getPreviewWebPath($place->desktop_width)}' 
                         class='img-responsive' 
+                        data-id='{$banners->id}'
                         alt='{$banner->title}'>
                 </picture>";
         else
@@ -95,6 +96,7 @@ foreach ($banners as $banner) {
                         src='{$banner->file_desktop->getPreviewWebPath($place->desktop_width)}' 
                         src='{$banner->file_desktop->getPreviewWebPath($place->desktop_width)}' 
                         class='img-responsive' 
+                        data-id='{$banners->id}'
                         alt='{$banner->title}'>
                 </picture>";
 

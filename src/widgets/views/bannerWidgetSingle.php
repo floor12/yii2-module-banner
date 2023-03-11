@@ -58,6 +58,7 @@ if ($banners->type == AdsBanner::TYPE_IMAGE
                         src='{$banners->file_desktop->getPreviewWebPath($place->desktop_width)}' 
                         class='img-responsive' 
                         alt='{$banners->title}'>
+                        data-id='{$banners->id}'
                 </picture>";
     else
         $img = "<picture class='banner-widget'>
@@ -74,12 +75,13 @@ if ($banners->type == AdsBanner::TYPE_IMAGE
                     <img 
                         src='{$banners->file_desktop->getPreviewWebPath($place->desktop_width)}' 
                         class='img-responsive' 
+                        data-id='{$banners->id}'
                         alt='{$banners->title}'>
                 </picture>";
 
 elseif ($banners->type == AdsBanner::TYPE_VIDEO) {
 
-    $img = '<video autoplay muted playsinline loop>';
+    $img = "<video autoplay muted playsinline loop data-id='{$banners->id}'>";
     if ($banners->file_mobile) {
         $img .= "<source src='{$banners->file_mobile->getHref()}' type='video/mp4'>";
     }
