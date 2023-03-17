@@ -57,8 +57,8 @@ if ($banners->type == AdsBanner::TYPE_IMAGE
                     <img 
                         src='{$banners->file_desktop->getPreviewWebPath($place->desktop_width)}' 
                         class='img-responsive' 
-                        alt='{$banners->title}'>
                         data-id='{$banners->id}'
+                        alt='{$banners->title}'>
                 </picture>";
     else
         $img = "<picture class='banner-widget'>
