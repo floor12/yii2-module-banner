@@ -41,7 +41,7 @@ $this->registerJs($jsCode, View::POS_READY, 'floor12-banner-slider-' . $id);
 
 echo "<div id='{$id}'>";
 
-foreach ($banners as $banner) {
+foreach ($banners as $key => $banner) {
     if (
         $banner->type == AdsBanner::TYPE_IMAGE &&
         $banner->file_desktop &&
@@ -78,6 +78,8 @@ foreach ($banners as $banner) {
                         src='{$banner->file_desktop->getPreviewWebPath($place->desktop_width)}' 
                         class='img-responsive' 
                         data-id='{$banner->id}'
+                        data-title='{$banner->title}'
+                        data-position='{$key}'
                         alt='{$banner->title}'>
                 </picture>";
         else
@@ -97,6 +99,8 @@ foreach ($banners as $banner) {
                         src='{$banner->file_desktop->getPreviewWebPath($place->desktop_width)}' 
                         class='img-responsive' 
                         data-id='{$banner->id}'
+                        data-title='{$banner->title}'
+                        data-position='{$key}'
                         alt='{$banner->title}'>
                 </picture>";
 
@@ -104,6 +108,9 @@ foreach ($banners as $banner) {
         $img = Html::tag('iframe', null, [
             'src' => $banner->webPath,
             'class' => 'f12-rich-banner',
+            'data-id' => $banner->id,
+            'data-title' => $banner->title,
+            'data-position' => $key,
             'data-href' => $banner->href ? Url::toRoute(['/banner/redirect', 'id' => $banner->id]) : '',
         ]);
 

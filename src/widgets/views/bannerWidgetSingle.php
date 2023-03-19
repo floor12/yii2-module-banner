@@ -58,6 +58,8 @@ if ($banners->type == AdsBanner::TYPE_IMAGE
                         src='{$banners->file_desktop->getPreviewWebPath($place->desktop_width)}' 
                         class='img-responsive' 
                         data-id='{$banners->id}'
+                        data-title='{$banners->title}'
+                        data-position='0'
                         alt='{$banners->title}'>
                 </picture>";
     else
@@ -76,6 +78,8 @@ if ($banners->type == AdsBanner::TYPE_IMAGE
                         src='{$banners->file_desktop->getPreviewWebPath($place->desktop_width)}' 
                         class='img-responsive' 
                         data-id='{$banners->id}'
+                        data-title='{$banners->title}'
+                        data-position='0'
                         alt='{$banners->title}'>
                 </picture>";
 

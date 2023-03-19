@@ -23,6 +23,7 @@ class BannerWidget extends Widget
     public $targetBlank = true;
     public $showSubLink = false;
     public $showSubtitle = false;
+    public $js = '';
     private $place;
     private $banners;
     private $view;
@@ -103,7 +104,9 @@ class BannerWidget extends Widget
             $renderedBanner .= Html::tag('p', $this->banners->subtitle);
         }
 
-
+        if ($this->js) {
+            $this->getView()->registerJs($this->js);
+        }
         return $renderedBanner;
 
     }
