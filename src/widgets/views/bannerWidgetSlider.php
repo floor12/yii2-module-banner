@@ -27,6 +27,7 @@ $jsCode = <<< JS
     $('#{$id}').slick({
         vertical :  {$place->vertical},
         arrows: {$place->arrows},
+        dots: {$place->dots},
         autoplay: true,
         accessibility: false,
         adaptiveHeight: true,

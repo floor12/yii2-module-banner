@@ -22,6 +22,7 @@ use yii\db\ActiveRecord;
  * @property int $slider_direction Направление слайдера
  * @property int $slider_time Длительность слайда
  * @property int $slider_arrows Показывать стрелки слайдера
+ * @property int $slider_dots Показывать стрелки слайдера
  * @property string $arrows Возвращает строковое true или false для вставки в JS
  * @property string $vertical Возвращает строковое true или false для вставки в JS
  * @property boolean $desktop_width_max Растягивать по ширине
@@ -65,7 +66,7 @@ class AdsPlace extends ActiveRecord
     {
         return [
             [['title', 'desktop_width', 'desktop_height'], 'required'],
-            [['desktop_width_max', 'mobile_width_max'], 'boolean'],
+            [['desktop_width_max', 'mobile_width_max', 'slider_dots'], 'boolean'],
             [['desktop_width', 'desktop_height', 'mobile_width', 'mobile_height', 'status', 'slider', 'slider_direction', 'slider_arrows', 'slider_time'], 'integer'],
             [['title'], 'string', 'max' => 255],
             ['slider_time', 'default', 'value' => '3000'],
@@ -126,7 +127,8 @@ class AdsPlace extends ActiveRecord
             'slider_arrows' => 'Показывать стрелки',
             'slider_time' => 'Длительность слайда (мс)',
             'desktop_width_max' => 'Растягивать по ширине',
-            'mobile_width_max' => 'Растягивать по ширине'
+            'mobile_width_max' => 'Растягивать по ширине',
+            'slider_dots' => 'Показывать точки'
         ];
     }
 
@@ -170,6 +172,14 @@ class AdsPlace extends ActiveRecord
         if ($this->slider_arrows == self::SLIDER_ARROWS_SHOW)
             return "true";
         return "false";
+    }
+
+    /** Возвращаем строковое значение для вставки в JS
+     * @return string
+     */
+    public function getDots(): string
+    {
+        return $this->slider_dots ? "true" : "false";
     }
 
 }

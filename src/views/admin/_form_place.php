@@ -71,6 +71,7 @@ $this->registerJs("updateAdsPlaceForm()");
             </div>
             <div class="col-md-3" style="padding-top: 25px">
                 <?= $form->field($model, 'slider_arrows')->checkbox() ?>
+                <?= $form->field($model, 'slider_dots')->checkbox() ?>
             </div>
         </div>
     </div>
