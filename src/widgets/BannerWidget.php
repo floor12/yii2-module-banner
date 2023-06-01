@@ -54,11 +54,6 @@ class BannerWidget extends Widget
             ];
         }, 60 * 60, new TagDependency(['tags' => [Module::CACHE_TAG_BANNERS]]));
 
-
-        // Если не найдены активные баннеры -  тоже ничего не делаем
-        if (sizeof($this->bannersActive) == 0)
-            return false;
-
         return true;
     }
 
@@ -67,11 +62,10 @@ class BannerWidget extends Widget
      */
     public function run(): string
     {
-        if (sizeof($this->bannersActive) == 0)
+        if (sizeof((array)$this->bannersActive) == 0)
             return '';
 
         if ($this->place->slider == AdsPlace::SLIDER_ENABLED) {
-
 
             foreach ($this->bannersActive as $banner)
                 $banner->increaseViews();
