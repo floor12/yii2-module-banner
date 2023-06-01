@@ -19,14 +19,12 @@ use yii\helpers\Html;
 class BannerWidget extends Widget
 {
     public $place_id;
-    public $_place_id;
     public $targetBlank = true;
     public $showSubLink = false;
     public $showSubtitle = false;
     public $js = '';
     private $place;
     private $banners;
-    private $view;
     private $bannersActive;
 
     /**
@@ -34,9 +32,6 @@ class BannerWidget extends Widget
      */
     public function init(): bool
     {
-        if (empty($this->place_id))
-            $this->place = $this->_place_id;
-
         // Некоторые браузеры любят посылать HEAD запросы, что ошибочно увеличивает счетчик просмотров
         if (Yii::$app->request->method == 'HEAD')
             return false;
@@ -61,22 +56,7 @@ class BannerWidget extends Widget
 
 
         // Если не найдены активные баннеры -  тоже ничего не делаем
-        if (empty($this->bannersActive))
-            return false;
-
-        // Если площадка в режиме слайдера - выбираем все баннеры. В противном случае - рандомно выбираем 1 баннер из актиыных
-        if ($this->place->slider == AdsPlace::SLIDER_ENABLED) {
-            $this->banners = $this->bannersActive;
-            foreach ($this->banners as $banner)
-                $banner->increaseViews();
-            $this->view = 'bannerWidgetSlider';
-        } else {
-            $this->banners = $this->bannersActive[rand(0, sizeof($this->bannersActive) - 1)];
-            $this->banners->increaseViews();
-            $this->view = 'bannerWidgetSingle';
-        }
-
-        if (!$this->banners)
+        if (sizeof($this->bannersActive) == 0)
             return false;
 
         return true;
@@ -87,22 +67,39 @@ class BannerWidget extends Widget
      */
     public function run(): string
     {
-        if (!$this->banners)
-            return "";
-        $renderedBanner = $this->render($this->view, [
-            'banners' => $this->banners,
-            'place' => $this->place,
-            'id' => "banner" . rand(99999, 9999999),
-            'targetBlank' => $this->targetBlank,
-            'adaptiveBreakpoint' => Yii::$app->getModule('banner')->adaptiveBreakpoint
-        ]);
-        if ($this->showSubLink && $this->place->slider == AdsPlace::SLIDER_DISABLED) {
-            $renderedBanner .= Html::a($this->banners->title, ['/banner/redirect', 'id' => $this->banners->id], $this->targetBlank ? ['target' => '_blank'] : []);
+        if (sizeof($this->bannersActive) == 0)
+            return '';
+
+        if ($this->place->slider == AdsPlace::SLIDER_ENABLED) {
+
+
+            foreach ($this->bannersActive as $banner)
+                $banner->increaseViews();
+            $renderedBanner = $this->render('bannerWidgetSlider', [
+                'banners' => $this->bannersActive,
+                'place' => $this->place,
+                'targetBlank' => $this->targetBlank,
+            ]);
+
+
+        } else {
+
+            $position = rand(0, (sizeof($this->bannersActive)) - 1);
+            $banner = $this->bannersActive[$position];
+            $banner->increaseViews();
+            $renderedBanner = $this->render('bannerWidgetSingle', [
+                'banner' => $banner,
+                'place' => $this->place,
+                'targetBlank' => $this->targetBlank,
+            ]);
+
+            if ($this->showSubLink) {
+                $renderedBanner .= Html::a($banner->title, ['/banner/redirect', 'id' => $banner->id], $this->targetBlank ? ['target' => '_blank'] : []);
+                $renderedBanner .= Html::tag('p', $banner->subtitle);
+            }
+
         }
 
-        if ($this->showSubLink && $this->place->slider == AdsPlace::SLIDER_DISABLED) {
-            $renderedBanner .= Html::tag('p', $this->banners->subtitle);
-        }
 
         if ($this->js) {
             $this->getView()->registerJs($this->js);

@@ -239,13 +239,7 @@ class AdsBanner extends ActiveRecord
      */
     public function getType()
     {
-        if ($this->file_desktop && $this->file_desktop->type == FileType::FILE)
-            return self::TYPE_RICH;
-
-        if ($this->file_desktop && $this->file_desktop->type == FileType::VIDEO)
-            return self::TYPE_VIDEO;
-
-        return self::TYPE_IMAGE;
+        return $this->file_desktop->type;
     }
 
     /**
@@ -255,15 +249,12 @@ class AdsBanner extends ActiveRecord
      */
     public function getWebPath()
     {
-        if ($this->type == self::TYPE_IMAGE)
+        if ($this->type != FileType::FILE)
             return;
-        if ($this->type == self::TYPE_VIDEO)
-            return;
-        else {
-            $this->publish();
-            return Yii::getAlias(Yii::$app->getModule('banner')->bannersWebPath . '/' . $this->file_desktop->hash . '/');
-        }
+        $this->publish();
+        return Yii::getAlias(Yii::$app->getModule('banner')->bannersWebPath . '/' . $this->file_desktop->hash . '/');
     }
+
 
     /**
      * @throws ErrorException

@@ -108,7 +108,7 @@ echo GridView::widget([
         [
             'attribute' => 'type',
             'content' => function (AdsBanner $model) {
-                return $model->type ? "HTML" : "Изображение";
+                return \floor12\files\models\FileType::getLabel($model->type);
             }
         ],
         'views',
