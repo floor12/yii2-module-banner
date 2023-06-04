@@ -31,6 +31,7 @@ $jsCode = <<< JS
         autoplay: true,
         accessibility: false,
         adaptiveHeight: true,
+        pauseOnHover: false,
         autoplaySpeed: {$place->slider_time},
     })   
 JS;
