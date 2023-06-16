@@ -11,12 +11,20 @@
 
 use floor12\banner\assets\BannerAsset;
 use floor12\banner\models\AdsPopup;
+use floor12\files\components\PictureWidget;
 use yii\helpers\Html;
 use yii\web\View;
 
 BannerAsset::register($this);
 
-$image = Html::img($model->file_desktop);
+$image = PictureWidget::widget([
+    'model' => $model->file_desktop,
+    'width' => [
+        'min-width: 500px' => '1400',
+        'max-width: 500px' => '400',
+    ],
+    'alt' => $model->title,
+]);
 
 $this->registerJs('$("#bannerModal").modal()');
 
