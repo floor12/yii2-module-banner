@@ -31,9 +31,10 @@ $this->registerJs('$("#bannerModal").modal()');
 ?>
 
 <div class='modal fade' id='bannerModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
-    <div class='modal-dialog modal-lg text-center' role='document'>
+    <div class='modal-dialog modal-lg' role='document'>
         <button type='button' class='close popup-btn-close' data-dismiss='modal' aria-label='Close'><span
                     aria-hidden='true'>&times;</span></button>
         <?= $model->href ? Html::a($image, ['/banner/redirect/popup', 'id' => $model->id], ['target' => '_blank', 'id' => '']) : $image ?>
     </div>
 </div>
+
