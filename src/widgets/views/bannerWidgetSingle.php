@@ -2,7 +2,7 @@
 
 /**
  * @var $this View
- * @var $banners AdsBanner
+ * @var $banner AdsBanner
  * @var $place AdsPlace
  * @var $targetBlank bool
  */

@@ -1,16 +1,22 @@
 <?php
 /**
- * @var $this \yii\web\View
- * @var $banner \floor12\banner\models\AdsBanner
- * @var $place \floor12\banner\models\AdsPlace
+ * @var $this View
+ * @var $banner AdsBanner
+ * @var $place AdsPlace
  */
+
+use floor12\banner\models\AdsBanner;
+use floor12\banner\models\AdsPlace;
+use yii\helpers\Url;
+use yii\web\View;
+
 $rand = rand(1000, 9999);
 ?>
 
 
 <div class="banner-video" onclick="<?= $banner->onclick ?>" data-id='<?= $banner->id ?>'>
 
-    <?php if ($banner->href) { ?><a href="<?= $banner->href ?>"><?php } ?>
+    <?php if ($banner->href) { ?><a href="<?= Url::toRoute(['/banner/redirect', 'id' => $banner->id]) ?>"><?php } ?>
 
         <?php if (!$banner->file_mobile): ?>
             <video id="video<?= $rand ?>" autoplay muted playsinline loop data-id='<?= $banner->id ?>'
@@ -24,8 +30,7 @@ $rand = rand(1000, 9999);
             <script>
                 const videoElement = document.getElementById('video<?= $rand ?>');
                 if (window.innerWidth > 800) {
-                    const desktopSrc = videoElement.getAttribute('data-desktop');
-                    videoElement.src = desktopSrc;
+                    videoElement.src = videoElement.getAttribute('data-desktop');
                 }
             </script>
         <?php endif; ?>

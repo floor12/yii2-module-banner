@@ -1,11 +1,15 @@
 <?php
 /**
- * @var $this \yii\web\View
- * @var $banner \floor12\banner\models\AdsBanner
- * @var $place \floor12\banner\models\AdsPlace
+ * @var $this View
+ * @var $banner AdsBanner
+ * @var $place AdsPlace
  */
 
+use floor12\banner\models\AdsBanner;
+use floor12\banner\models\AdsPlace;
 use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\web\View;
 
 $style = "border:0; height: {$place->desktop_height}px; ";
 if ($place->desktop_width_max) {
@@ -15,8 +19,8 @@ if ($place->desktop_width_max) {
 }
 
 $img = Html::tag('iframe', null, [
-    'src' => $banners->webPath,
+    'src' => $banner->webPath,
     'class' => 'f12-rich-banner',
     'style' => $style,
-    'data-href' => $banners->href ? Url::toRoute(['/banner/redirect', 'id' => $banners->id]) : '',
+    'data-href' => $banner->href ? Url::toRoute(['/banner/redirect', 'id' => $banner->id]) : '',
 ]);
