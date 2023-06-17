@@ -20,6 +20,9 @@
 }
 
 .popup-btn-close {
+    position: absolute;
+    top: 0;
+    right: 20px;
     color: white;
     font-size: 400%;
     opacity: 0.8;
