@@ -21,8 +21,11 @@
 
 .popup-btn-close {
     position: absolute;
-    top: 0;
-    right: 20px;
+    top: 5px;
+    right: 5px;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
     color: white;
     font-size: 400%;
     opacity: 0.8;
@@ -91,4 +94,10 @@ td.banner-preview img {
     .banner-desktop {
         display: block;
     }
+}
+
+#bannerModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
