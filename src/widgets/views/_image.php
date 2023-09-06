@@ -22,7 +22,7 @@ use yii\web\View;
         <?= PictureWidget::widget([
             'model' => $banner->file_desktop,
             'width' => $place->desktop_width,
-            'classPicture' => 'banner-desktop',
+            'classPicture' => $banner->file_mobile ? 'banner-desktop' : 'banner-common',
             'alt' => $banner->title,
         ]) ?>
 
