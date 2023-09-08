@@ -239,7 +239,7 @@ class AdsBanner extends ActiveRecord
      */
     public function getType()
     {
-        return $this->file_desktop->type;
+        return $this->file_desktop?->type;
     }
 
     /**
