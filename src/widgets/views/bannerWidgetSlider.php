@@ -11,6 +11,8 @@
  * @var $id string
  * @var $targetBlank bool
  * @var $adaptiveBreakpoint integer
+ * @var $showTitle bool
+ * @var $showSubtitle bool
  */
 
 use floor12\banner\assets\SlickAsset;
@@ -41,10 +43,12 @@ $this->registerJs($jsCode, View::POS_READY, 'floor12-banner-slider-' . $id);
 echo "<div id='{$id}'>";
 
 foreach ($banners as $key => $banner) {
-   echo $this->render('bannerWidgetSingle', [
+    echo $this->render('bannerWidgetSingle', [
         'banner' => $banner,
         'place' => $place,
         'targetBlank' => $targetBlank,
+        'showTitle' => $showTitle,
+        'showSubtitle' => $showSubtitle,
     ]);
 }
 

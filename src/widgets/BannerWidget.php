@@ -21,6 +21,7 @@ class BannerWidget extends Widget
     public $place_id;
     public $targetBlank = true;
     public $showSubLink = false;
+    public $showTitle = false;
     public $showSubtitle = false;
     public $js = '';
     private $place;
@@ -73,6 +74,8 @@ class BannerWidget extends Widget
                 'banners' => $this->bannersActive,
                 'place' => $this->place,
                 'targetBlank' => $this->targetBlank,
+                'showTitle' => $this->showTitle,
+                'showSubtitle' => $this->showSubtitle,
             ]);
 
 
@@ -85,6 +88,8 @@ class BannerWidget extends Widget
                 'banner' => $banner,
                 'place' => $this->place,
                 'targetBlank' => $this->targetBlank,
+                'showTitle' => $this->showTitle,
+                'showSubtitle' => $this->showSubtitle,
             ]);
 
             if ($this->showSubLink) {

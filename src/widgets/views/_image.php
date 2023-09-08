@@ -3,11 +3,14 @@
  * @var $this View
  * @var $banner AdsBanner
  * @var $place AdsPlace
+ * @var $showTitle bool
+ * @var $showSubtitle bool
  */
 
 use floor12\banner\models\AdsBanner;
 use floor12\banner\models\AdsPlace;
 use floor12\files\components\PictureWidget;
+use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\View;
 
@@ -33,6 +36,10 @@ use yii\web\View;
             'alt' => $banner->title,
         ]) ?>
 
-        <?php if ($banner->href){ ?></a><?php } ?>
+        <div class="banner-meta">
+            <?= $showTitle && $banner->title ? Html::tag('div', $banner->title, ['class' => 'banner-title']) : null ?>
+            <?= $showSubtitle && $banner->subtitle ? Html::tag('div', $banner->subtitle, ['class' => 'banner-subtitle']) : null ?>
+        </div>
 
+        <?php if ($banner->href){ ?></a><?php } ?>
 </div>

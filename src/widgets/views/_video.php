@@ -3,14 +3,26 @@
  * @var $this View
  * @var $banner AdsBanner
  * @var $place AdsPlace
+ * @var $showTitle bool
+ * @var $showSubtitle bool
  */
 
 use floor12\banner\models\AdsBanner;
 use floor12\banner\models\AdsPlace;
+use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\View;
 
 $rand = rand(1000, 9999);
+
+// register video file to preload
+$this->registerLinkTag(
+    [
+        'rel' => 'preload',
+        'href' => $banner->file_mobile->getHref(),
+        'as' => 'video',
+    ]
+);
 ?>
 
 
@@ -36,5 +48,10 @@ $rand = rand(1000, 9999);
         <?php endif; ?>
 
         <?php if ($banner->href){ ?></a><?php } ?>
+
+    <div class="banner-meta">
+        <?= $showTitle && $banner->title ? Html::tag('div', $banner->title, ['class' => 'banner-title']) : null ?>
+        <?= $showSubtitle && $banner->subtitle ? Html::tag('div', $banner->subtitle, ['class' => 'banner-subtitle']) : null ?>
+    </div>
 
 </div>

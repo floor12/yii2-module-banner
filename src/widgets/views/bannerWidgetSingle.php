@@ -5,6 +5,8 @@
  * @var $banner AdsBanner
  * @var $place AdsPlace
  * @var $targetBlank bool
+ * @var $showTitle bool
+ * @var $showSubtitle bool
  */
 
 use floor12\banner\assets\BannerAsset;
@@ -20,6 +22,8 @@ if ($banner->type == FileType::IMAGE) {
         'banner' => $banner,
         'place' => $place,
         'targetBlank' => $targetBlank,
+        'showTitle' => $showTitle,
+        'showSubtitle' => $showSubtitle,
     ]);
 }
 
@@ -28,6 +32,8 @@ if ($banner->type == FileType::VIDEO) {
         'banner' => $banner,
         'place' => $place,
         'targetBlank' => $targetBlank,
+        'showTitle' => $showTitle,
+        'showSubtitle' => $showSubtitle,
     ]);
 }
 
@@ -36,5 +42,7 @@ if ($banner->type == FileType::FILE) {
         'banner' => $banner,
         'place' => $place,
         'targetBlank' => $targetBlank,
+        'showTitle' => $showTitle,
+        'showSubtitle' => $showSubtitle,
     ]);
 }
