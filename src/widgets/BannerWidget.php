@@ -21,7 +21,7 @@ class BannerWidget extends Widget
     public $place_id;
     public $targetBlank = true;
     public $showSubLink = false;
-    public $showTitle = false;
+    public $showTitle = null;
     public $showSubtitle = false;
     public $js = '';
     private $place;

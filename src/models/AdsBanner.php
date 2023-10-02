@@ -14,6 +14,7 @@ use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use ZipArchive;
 
+
 /**
  * This is the model class for table "ads_banner".
  *
@@ -36,9 +37,11 @@ use ZipArchive;
  * @property string $webrootPath Полный путь к рич-баннеры
  * @property string $webPath Относительный путь к рич-баннеры
  * @property string $onclick Событие по клику на баннер
+ * @property bool $show_caption Показывать заголовк баннера
  *
  */
 class AdsBanner extends ActiveRecord
+
 {
 
     const STATUS_ACTIVE = 0;
@@ -72,6 +75,7 @@ class AdsBanner extends ActiveRecord
             ['file_mobile', 'file', 'checkExtensionByMimeType' => false, 'extensions' => ['webm', 'mp4', 'jpg', 'jpeg', 'png', 'webp', 'gif', 'zip', 'svg'], 'maxFiles' => 1],
             ['file_desktop', 'required'],
             ['subtitle', 'string'],
+            ['show_caption', 'boolean'],
             [['place_ids'], 'each', 'rule' => ['integer']],
             ['weight', 'default', 'value' => '0'],
         ];
@@ -111,6 +115,7 @@ class AdsBanner extends ActiveRecord
             'type' => 'Тип баннера',
             'archive' => 'Архивный',
             'subtitle' => 'Подзаголовок баннера',
+            'show_caption' => 'Показывать подзаголово'
         ];
     }
 
@@ -243,6 +248,7 @@ class AdsBanner extends ActiveRecord
             return $this->file_desktop->type;
         return FileType::FILE;
     }
+
     /**
      * @return bool|string|void
      * @throws ErrorException

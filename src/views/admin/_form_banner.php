@@ -54,6 +54,7 @@ $form = ActiveForm::begin([
         <div class="col-md-3">
             <?= $form->field($model, 'status')->checkbox() ?>
             <?= $form->field($model, 'archive')->checkbox() ?>
+            <?= $form->field($model, 'show_caption')->checkbox() ?>
         </div>
     </div>
 
