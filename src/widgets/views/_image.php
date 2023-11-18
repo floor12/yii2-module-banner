@@ -37,8 +37,10 @@ use yii\web\View;
         ]) ?>
 
         <div class="banner-meta">
-            <?= ((($showTitle == null && $banner->show_caption)) && $banner->title) ? Html::tag('div', $banner->title, ['class' => 'banner-title']) : null ?>
-            <?= $showSubtitle && $banner->subtitle ? Html::tag('div', $banner->subtitle, ['class' => 'banner-subtitle']) : null ?>
+            <div class="banner-meta-inner">
+                <?= ((($showTitle == null && $banner->show_caption)) && $banner->title) ? Html::tag('div', $banner->title, ['class' => 'banner-title']) : null ?>
+                <?= $showSubtitle && $banner->subtitle ? Html::tag('div', $banner->subtitle, ['class' => 'banner-subtitle']) : null ?>
+            </div>
         </div>
 
         <?php if ($banner->href){ ?></a><?php } ?>
