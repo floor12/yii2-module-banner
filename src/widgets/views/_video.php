@@ -16,13 +16,14 @@ use yii\web\View;
 $rand = rand(1000, 9999);
 
 // register video file to preload
-$this->registerLinkTag(
-    [
-        'rel' => 'preload',
-        'href' => $banner->file_mobile->getHref(),
-        'as' => 'video',
-    ]
-);
+if ($banner->file_mobile)
+    $this->registerLinkTag(
+        [
+            'rel' => 'preload',
+            'href' => $banner->file_mobile->getHref(),
+            'as' => 'video',
+        ]
+    );
 ?>
 
 
@@ -32,11 +33,13 @@ $this->registerLinkTag(
 
         <?php if (!$banner->file_mobile): ?>
             <video id="video<?= $rand ?>" autoplay muted playsinline loop data-id='<?= $banner->id ?>'
+                   poster="<?= $banner->file_desktop->getHref() ?>"
                    src="<?= $banner->file_desktop->getHref() ?>">
             </video>
         <?php else: ?>
             <video id="video<?= $rand ?>" autoplay muted playsinline loop data-id='<?= $banner->id ?>'
                    src="<?= $banner->file_mobile->getHref() ?>"
+                   poster="<?= $banner->file_desktop->getPreviewWebPath(1920) ?>"
                    data-desktop="<?= $banner->file_desktop->getHref() ?>">
             </video>
             <script>

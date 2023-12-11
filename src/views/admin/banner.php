@@ -86,7 +86,7 @@ echo GridView::widget([
             'header' => 'Файл баннера',
             'contentOptions' => ['class' => 'banner-preview'],
             'content' => function (AdsBanner $model) {
-                if ($model->file_desktop && $model->file_desktop->isImage())
+                if ($model->file_desktop)
                     return Html::a(Html::img($model->file_desktop->getPreviewWebPath(300)),
                         $model->file_desktop, [
                             'data-lightbox' => 'banner-gallary',
