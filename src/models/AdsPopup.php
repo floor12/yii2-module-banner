@@ -31,15 +31,19 @@ class AdsPopup extends ActiveRecord
     const STATUS_ACTIVE = 0;
     const STATUS_DISABLED = 1;
 
-    public $periods = [
-        60 * 60 * 24 * 1 => "1 день",
-        60 * 60 * 24 * 2 => "2 дня",
-        60 * 60 * 24 * 2 => "3 дня",
-        60 * 60 * 24 * 4 => "4 дня",
-        60 * 60 * 24 * 5 => "5 дней",
-        60 * 60 * 24 * 10 => "10 дней",
-        60 * 60 * 24 * 15 => "15 дней",
-    ];
+
+    public function getPeriods()
+    {
+        return [
+            60 * 60 * 24 * 1 => \Yii::t('app.f12.banner', '1 day'),
+            60 * 60 * 24 * 2 => \Yii::t('app.f12.banner', '2 days'),
+            60 * 60 * 24 * 2 => \Yii::t('app.f12.banner', '2 days'),
+            60 * 60 * 24 * 4 => \Yii::t('app.f12.banner', '4 days'),
+            60 * 60 * 24 * 5 => \Yii::t('app.f12.banner', '5 days'),
+            60 * 60 * 24 * 10 => \Yii::t('app.f12.banner', '10 days'),
+            60 * 60 * 24 * 15 => \Yii::t('app.f12.banner', '15 days'),
+        ];
+    }
 
     /**
      * {@inheritdoc}
@@ -84,7 +88,7 @@ class AdsPopup extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'status' =>\Yii::t('app.f12.banner', 'Disable'),
+            'status' => \Yii::t('app.f12.banner', 'Disable'),
             'title' => \Yii::t('app.f12.banner', 'Title'),
             'show_start' => \Yii::t('app.f12.banner', 'Show start'),
             'show_end' => \Yii::t('app.f12.banner', 'Show end'),

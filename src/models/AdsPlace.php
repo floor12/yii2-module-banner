@@ -46,10 +46,6 @@ class AdsPlace extends ActiveRecord
     const SLIDER_VERTICAL = 1;
     const SLIDER_HORIZONTAL = 0;
 
-    public $directions = [
-        self::SLIDER_HORIZONTAL => 'Горизонтальный',
-        self::SLIDER_VERTICAL => 'Вертикальный',
-    ];
 
     /**
      * {@inheritdoc}
@@ -57,6 +53,14 @@ class AdsPlace extends ActiveRecord
     public static function tableName(): string
     {
         return 'ads_place';
+    }
+
+    public function getDirections(): array
+    {
+        return [
+            self::SLIDER_HORIZONTAL => Yii::t('app.f12.banner', 'Horizontal'),
+            self::SLIDER_VERTICAL => Yii::t('app.f12.banner', 'Vertical'),
+        ];
     }
 
     /**
