@@ -45,8 +45,8 @@ class AdsPopupPlace extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Название площадки',
-            'status' => 'Выключить',
+            'title' => \Yii::t('app.f12.banner', 'Title'),
+            'status' => \Yii::t('app.f12.banner', 'Disabled'),
         ];
     }
 

@@ -29,9 +29,10 @@ BootstrapAsset::register($this);
 BannerAsset::register($this);
 EditModalAsset::register($this);
 
-$this->title = 'Баннеры';
 
-echo Html::tag('h1', 'Баннеры');
+$this->title = Yii::t('app.f12.banner', 'Banners');
+
+echo Html::tag('h1', Yii::t('app.f12.banner', 'Banners'), ['class' => 'fl12-banner-title']);
 
 echo TabWidget::widget();
 
@@ -39,7 +40,7 @@ echo EditModalHelper::editBtn(
     'banner-form',
     0,
     'btn btn-sm btn-primary btn-banner-add',
-    IconHelper::PLUS . " добавить баннер"
+    IconHelper::PLUS . ' ' . Yii::t('app.f12.banner', 'Add banner')
 );
 
 $form = ActiveForm::begin([
@@ -53,19 +54,19 @@ $form = ActiveForm::begin([
             <div class="col-md-8">
                 <?= $form->field($model, 'filter')
                     ->label(false)
-                    ->textInput(['placeholder' => 'Поиск по баннерам', 'autofocus' => true]) ?>
+                    ->textInput(['placeholder' => Yii::t('app.f12.banner', 'Banner filter'), 'autofocus' => true]) ?>
             </div>
 
             <div class="col-md-2">
                 <?= $form->field($model, "status")
                     ->label(false)
-                    ->dropDownList(['Активные', 'Выключенные'], ['prompt' => 'Все статусы']) ?>
+                    ->dropDownList([Yii::t('app.f12.banner', 'Enabled'), Yii::t('app.f12.banner', 'Disabled')], ['prompt' => Yii::t('app.f12.banner', 'any status')]) ?>
             </div>
 
             <div class="col-md-2">
                 <?= $form->field($model, "archive")
                     ->label(false)
-                    ->dropDownList(['Актуальные', 'Архивные']) ?>
+                    ->dropDownList([Yii::t('app.f12.banner', 'Non archived'), Yii::t('app.f12.banner', 'Archved')]) ?>
             </div>
 
         </div>
@@ -83,7 +84,7 @@ echo GridView::widget([
     'columns' => [
         'id',
         [
-            'header' => 'Файл баннера',
+            'header' => Yii::t('app.f12.banner', 'Preview'),
             'contentOptions' => ['class' => 'banner-preview'],
             'content' => function (AdsBanner $model) {
                 if ($model->file_desktop)
@@ -113,7 +114,9 @@ echo GridView::widget([
         ],
         'views',
         'clicks',
-        ['contentOptions' => ['style' => 'min-width:100px; text-align:right;'],
+        ['contentOptions' => [
+            'style' => 'min-width:100px; text-align:right;'
+        ],
             'content' => function (AdsBanner $model) {
                 return
                     EditModalHelper::editBtn('/banner/admin/banner-form', $model->id) .

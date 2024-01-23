@@ -84,17 +84,17 @@ class AdsPopup extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'status' => 'Выключить',
-            'title' => 'Название баннера',
-            'show_start' => 'Начало показа',
-            'show_end' => 'Окончание показа',
-            'href' => 'Ссылка',
-            'views' => 'Показы',
-            'clicks' => 'Клики',
-            'file_desktop' => 'Изображение',
-            'repeat_period' => 'Период повторного показа',
-            'place_ids' => 'Связанные площадки',
-            'archive' => 'Архивный'
+            'status' =>\Yii::t('app.f12.banner', 'Disable'),
+            'title' => \Yii::t('app.f12.banner', 'Title'),
+            'show_start' => \Yii::t('app.f12.banner', 'Show start'),
+            'show_end' => \Yii::t('app.f12.banner', 'Show end'),
+            'href' => \Yii::t('app.f12.banner', 'Link'),
+            'archive' => \Yii::t('app.f12.banner', 'Archive'),
+            'views' => \Yii::t('app.f12.banner', 'Views'),
+            'clicks' => \Yii::t('app.f12.banner', 'Clicks'),
+            'repeat_period' => \Yii::t('app.f12.banner', 'Repeat period'),
+            'place_ids' => \Yii::t('app.f12.banner', 'Places'),
+            'file_desktop' => \Yii::t('app.f12.banner', 'File'),
         ];
     }
 

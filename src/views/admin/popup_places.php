@@ -27,17 +27,17 @@ BannerAsset::register($this);
 EditModalAsset::register($this);
 
 
-$this->title = 'Pop-up';
+$this->title = 'Pop-up places';
 
-echo Html::tag('h1', 'Баннеры');
+echo Html::tag('h1', Yii::t('app.f12.banner', 'Banners'), ['class' => 'fl12-banner-title']);
 
 echo TabWidget::widget();
 
 echo EditModalHelper::editBtn(
-    'popup-place-form', 
-    0, 
-    'btn btn-sm btn-primary btn-banner-add', 
-    IconHelper::PLUS . " добавить площадку"
+    'popup-place-form',
+    0,
+    'btn btn-sm btn-primary btn-banner-add',
+    IconHelper::PLUS . Yii::t('app.f12.banner', 'Add place')
 );
 
 echo Html::tag('br');

@@ -70,8 +70,6 @@ class AdsPlace extends ActiveRecord
             [['desktop_width', 'desktop_height', 'mobile_width', 'mobile_height', 'status', 'slider', 'slider_direction', 'slider_arrows', 'slider_time'], 'integer'],
             [['title'], 'string', 'max' => 255],
             ['slider_time', 'default', 'value' => '3000'],
-
-
         ];
     }
 
@@ -116,19 +114,19 @@ class AdsPlace extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Название площадки',
-            'desktop_width' => 'Ширина (дексктоп)',
-            'desktop_height' => 'Высота (дексктоп)',
-            'mobile_width' => 'Ширина (мобильный)',
-            'mobile_height' => 'Высота (мобильный)',
-            'status' => 'Выключить',
-            'slider' => 'Активировать слайдер',
-            'slider_direction' => 'Направление слайдера',
-            'slider_arrows' => 'Показывать стрелки',
-            'slider_time' => 'Длительность слайда (мс)',
-            'desktop_width_max' => 'Растягивать по ширине',
-            'mobile_width_max' => 'Растягивать по ширине',
-            'slider_dots' => 'Показывать точки'
+            'title' => Yii::t('app.f12.banner', 'Title'),
+            'desktop_width' => Yii::t('app.f12.banner', 'Desktop width'),
+            'desktop_height' => Yii::t('app.f12.banner', 'Desktop height'),
+            'mobile_width' => Yii::t('app.f12.banner', 'Mobile width'),
+            'mobile_height' => Yii::t('app.f12.banner', 'Mobile height'),
+            'status' => Yii::t('app.f12.banner', 'Disable'),
+            'slider' => Yii::t('app.f12.banner', 'Slider'),
+            'slider_direction' => Yii::t('app.f12.banner', 'Slider direction'),
+            'slider_time' => Yii::t('app.f12.banner', 'Slider time'),
+            'slider_arrows' => Yii::t('app.f12.banner', 'Slider arrows'),
+            'slider_dots' => Yii::t('app.f12.banner', 'Slider dots'),
+            'desktop_width_max' => Yii::t('app.f12.banner', 'Stretch to width'),
+            'mobile_width_max' => Yii::t('app.f12.banner', 'Stretch to width'),
         ];
     }
 

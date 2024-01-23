@@ -2,6 +2,7 @@
 
 namespace floor12\banner;
 
+use Yii;
 /**
  * Banner module definition class
  * @property  string $adminLayout
@@ -12,7 +13,7 @@ class Module extends \yii\base\Module
 {
     const CACHE_TAG_BANNERS = 'banners_cache';
     const CACHE_TAG_POPUPS = 'popaup_cache';
-    /** 
+    /**
      * @inheritdoc
      */
     public $controllerNamespace = 'floor12\banner\controllers';
@@ -42,5 +43,22 @@ class Module extends \yii\base\Module
      */
     public $adaptiveBreakpoint = 700;
 
+    public function init()
+    {
+        $this->registerTranslations();
+        parent::init();
+    }
+
+    public function registerTranslations()
+    {
+        Yii::$app->i18n->translations['app.f12.banner'] = [
+            'class' => 'yii\i18n\PhpMessageSource',
+            'fileMap' => [
+                'app.f12.banner' => 'banner.php',
+            ],
+            'basePath' => '@vendor/floor12/yii2-module-banner/src/messages',
+            'sourceLanguage' => 'en-US',
+        ];
+    }
 
 }

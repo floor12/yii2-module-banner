@@ -20,7 +20,7 @@ use yii\web\View;
 use yii\widgets\ActiveForm;
 
 $datePickerOptions = [
-    'language' => 'ru',
+    'language' => Yii::$app->language,
     'pluginOptions' => [
         'autoclose' => true,
         'format' => 'dd.mm.yyyy'
@@ -35,7 +35,7 @@ $form = ActiveForm::begin([
 
 ?>
 <div class="modal-header">
-    <h2><?= $model->isNewRecord ? "Добавление баннера" : "Редактирование баннера"; ?></h2>
+    <h2><?= Yii::t('app.f12.banner', $model->isNewRecord ? 'Banner creation' : 'Banner update') ?></h2>
 </div>
 <div class="modal-body">
 
@@ -73,7 +73,7 @@ $form = ActiveForm::begin([
 
     <?= $form->field($model, 'place_ids')->widget(Select2::class, [
         'data' => $places,
-        'language' => 'ru',
+        'language' => Yii::$app->language,
         'options' => ['multiple' => true],
         'pluginOptions' => [
             'allowClear' => true
@@ -87,8 +87,8 @@ $form = ActiveForm::begin([
 </div>
 
 <div class="modal-footer">
-    <?= Html::a('Отмена', '', ['class' => 'btn btn-default modaledit-disable']) ?>
-    <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Сохранить', ['class' => 'btn btn-primary']) ?>
+    <?= Html::button(Yii::t('app.f12.banner', 'Cancel'), ['class' => 'btn btn-default modaledit-disable']) ?>
+    <?= Html::submitButton(Yii::t('app.f12.banner', $model->isNewRecord ? 'Create' : 'Save'), ['class' => 'btn btn-primary']) ?>
 </div>
 
 <?php ActiveForm::end(); ?>

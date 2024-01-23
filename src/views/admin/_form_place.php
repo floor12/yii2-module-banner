@@ -24,7 +24,7 @@ $this->registerJs("updateAdsPlaceForm()");
 
 ?>
 <div class="modal-header">
-    <h2><?= $model->isNewRecord ? "Добавление плащадки" : "Редактирование плащадки"; ?></h2>
+    <h2><?= Yii::t('app.f12.banner', $model->isNewRecord ? 'Banner place creation' : 'Banner place update') ?></h2>
 </div>
 
 <div class="modal-body">
@@ -79,8 +79,8 @@ $this->registerJs("updateAdsPlaceForm()");
 </div>
 
 <div class="modal-footer">
-    <?= Html::a('Отмена', '', ['class' => 'btn btn-default modaledit-disable']) ?>
-    <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Сохранить', ['class' => 'btn btn-primary']) ?>
+    <?= Html::button(Yii::t('app.f12.banner', 'Cancel'), ['class' => 'btn btn-default modaledit-disable']) ?>
+    <?= Html::submitButton(Yii::t('app.f12.banner', $model->isNewRecord ? 'Create' : 'Save'), ['class' => 'btn btn-primary']) ?>
 </div>
 
 <?php ActiveForm::end(); ?>

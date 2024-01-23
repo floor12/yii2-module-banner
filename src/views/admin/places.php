@@ -27,9 +27,9 @@ BootstrapAsset::register($this);
 BannerAsset::register($this);
 EditModalAsset::register($this);
 
-$this->title = 'Баннерные площадки';
+$this->title = Yii::t('app.f12.banner', 'Banners places');
 
-echo Html::tag('h1', 'Баннеры');
+echo Html::tag('h1', Yii::t('app.f12.banner', 'Banners'), ['class' => 'fl12-banner-title']);
 
 echo TabWidget::widget();
 
@@ -37,7 +37,7 @@ echo EditModalHelper::editBtn(
     'place-form',
     0,
     'btn btn-sm btn-primary btn-banner-add',
-    IconHelper::PLUS . " добавить площадку"
+    IconHelper::PLUS . Yii::t('app.f12.banner', 'Add place')
 );
 
 Pjax::begin(['id' => 'items']);
@@ -58,13 +58,13 @@ echo GridView::widget([
             }
         ],
         [
-            'header' => 'Десктоп',
+            'header' => Yii::t('app.f12.banner', 'Destop'),
             'content' => function (AdsPlace $model): string {
                 return "{$model->desktop_width}x{$model->desktop_height}px";
             }
         ],
         [
-            'header' => 'Мобильный',
+            'header' => Yii::t('app.f12.banner', 'Mobile'),
             'content' => function (AdsPlace $model): string {
                 return "{$model->mobile_width}x{$model->mobile_height}px";
             }

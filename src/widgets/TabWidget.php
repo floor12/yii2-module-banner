@@ -21,19 +21,19 @@ class TabWidget extends Widget
     {
         $this->items = [
             [
-                'name' => 'Баннеры',
+                'name' => \Yii::t('app.f12.banner', 'Banners'),
                 'href' => Url::toRoute(['banner'])
             ],
             [
-                'name' => 'Pop-up',
+                'name' => \Yii::t('app.f12.banner', 'Pop-up banners'),
                 'href' => Url::toRoute(['popup'])
             ],
             [
-                'name' => 'Площадки для баннеров',
+                'name' => \Yii::t('app.f12.banner', 'Banner places'),
                 'href' => Url::toRoute(['place'])
             ],
             [
-                'name' => 'Площадки для pop-up',
+                'name' => \Yii::t('app.f12.banner', 'Pop-up places'),
                 'href' => Url::toRoute(['pop-place'])
             ],
         ];

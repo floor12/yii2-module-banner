@@ -23,7 +23,7 @@ $form = ActiveForm::begin([
 ?>
 
 <div class="modal-header">
-    <h2><?= $model->isNewRecord ? "Добавление pop-up площадки" : "Редактирование pop-up площадки"; ?></h2>
+    <h2><?= Yii::t('app.f12.banner', $model->isNewRecord ? 'Pop-up banner place creation' : 'Pop-up banner place update') ?></h2>
 </div>
 
 <div class="modal-body">
@@ -42,8 +42,8 @@ $form = ActiveForm::begin([
 </div>
 
 <div class="modal-footer">
-    <?= Html::a('Отмена', '', ['class' => 'btn btn-default modaledit-disable']) ?>
-    <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Сохранить', ['class' => 'btn btn-primary']) ?>
+    <?= Html::button(Yii::t('app.f12.banner', 'Cancel'), ['class' => 'btn btn-default modaledit-disable']) ?>
+    <?= Html::submitButton(Yii::t('app.f12.banner', $model->isNewRecord ? 'Create' : 'Save'), ['class' => 'btn btn-primary']) ?>
 </div>
 
 <?php ActiveForm::end(); ?>

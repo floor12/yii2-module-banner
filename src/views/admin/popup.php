@@ -13,15 +13,15 @@ use floor12\banner\assets\BannerAsset;
 use floor12\banner\models\AdsBannerFilter;
 use floor12\banner\models\AdsPopup;
 use floor12\banner\widgets\TabWidget;
+use floor12\editmodal\EditModalAsset;
 use floor12\editmodal\EditModalHelper;
 use floor12\editmodal\IconHelper;
+use yii\bootstrap\BootstrapAsset;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
-use yii\bootstrap\BootstrapAsset;
-use floor12\editmodal\EditModalAsset;
 
 BootstrapAsset::register($this);
 BannerAsset::register($this);
@@ -30,7 +30,7 @@ EditModalAsset::register($this);
 
 $this->title = 'Pop-up';
 
-echo Html::tag('h1', 'Баннеры');
+echo Html::tag('h1', Yii::t('app.f12.banner', 'Banners'), ['class' => 'fl12-banner-title']);
 
 echo TabWidget::widget();
 
@@ -38,7 +38,7 @@ echo EditModalHelper::editBtn(
     'popup-form',
     0,
     'btn btn-sm btn-primary btn-banner-add',
-    IconHelper::PLUS . " добавить баннер"
+    IconHelper::PLUS . ' ' . Yii::t('app.f12.banner', 'Add banner')
 );
 
 
@@ -53,20 +53,19 @@ $form = ActiveForm::begin([
             <div class="col-md-8">
                 <?= $form->field($model, 'filter')
                     ->label(false)
-                    ->textInput(['placeholder' => 'Поиск по pop-up баннерам', 'autofocus' => true]) ?>
+                    ->textInput(['placeholder' => Yii::t('app.f12.banner','Banner filter'), 'autofocus' => true]) ?>
             </div>
 
             <div class="col-md-2">
                 <?= $form->field($model, "status")
                     ->label(false)
-                    ->dropDownList(['Активные', 'Выключенные'], ['prompt' => 'Все статусы']) ?>
+                    ->dropDownList([Yii::t('app.f12.banner', 'Enabled'), Yii::t('app.f12.banner', 'Disabled')], ['prompt' => Yii::t('app.f12.banner', 'any status')]) ?>
             </div>
 
             <div class="col-md-2">
                 <?= $form->field($model, "archive")
                     ->label(false)
-                    ->dropDownList(['Актуальные', 'Архивные']) ?>
-            </div>
+                    ->dropDownList([Yii::t('app.f12.banner', 'Non archived'), Yii::t('app.f12.banner', 'Archved')]) ?>            </div>
 
         </div>
     </div>

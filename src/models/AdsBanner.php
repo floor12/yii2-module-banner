@@ -100,22 +100,21 @@ class AdsBanner extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'status' => 'Выключить',
-            'title' => 'Название баннера',
-            'show_start' => 'Начало показа',
-            'show_end' => 'Окончание показа',
-            'href' => 'Ссылка',
-            'onclick' => 'JS Code',
-            'views' => 'Показы',
-            'clicks' => 'Клики',
-            'file_desktop' => 'Изображение (декстоп)',
-            'file_mobile' => 'Изображение (мобильный)',
-            'place_ids' => 'Связанные площадки',
-            'weight' => 'Вес баннера',
-            'type' => 'Тип баннера',
-            'archive' => 'Архивный',
-            'subtitle' => 'Подзаголовок баннера',
-            'show_caption' => 'Показывать подзаголово'
+            'status' => Yii::t('app.f12.banner', 'Disable'),
+            'title' => Yii::t('app.f12.banner', 'Title'),
+            'subtitle' => Yii::t('app.f12.banner', 'Subtitle'),
+            'show_start' => Yii::t('app.f12.banner', 'Show start'),
+            'show_end' => Yii::t('app.f12.banner', 'Show end'),
+            'href' => Yii::t('app.f12.banner', 'Link'),
+            'views' => Yii::t('app.f12.banner', 'Views'),
+            'clicks' => Yii::t('app.f12.banner', 'Clicks'),
+            'archive' => Yii::t('app.f12.banner', 'Archive'),
+            'place_ids' => Yii::t('app.f12.banner', 'Places'),
+            'file_desktop' => Yii::t('app.f12.banner', 'Desktop file'),
+            'file_mobile' => Yii::t('app.f12.banner', 'Mobile file'),
+            'weight' => Yii::t('app.f12.banner', 'Weight'),
+            'onclick' => Yii::t('app.f12.banner', 'Onclick JS code'),
+            'show_caption' => Yii::t('app.f12.banner', 'Show caption'),
         ];
     }
 
