@@ -43,6 +43,8 @@ class Module extends \yii\base\Module
      */
     public $adaptiveBreakpoint = 700;
 
+    public $usedBannerIds = [];
+
     public function init()
     {
         $this->registerTranslations();

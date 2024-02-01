@@ -81,8 +81,19 @@ class BannerWidget extends Widget
 
         } else {
 
-            $position = rand(0, (sizeof($this->bannersActive)) - 1);
-            $banner = $this->bannersActive[$position];
+            $readyBanners = [];
+            foreach ($this->bannersActive as $banner) {
+                if (in_array($banner->id, Yii::$app->getModule('banner')->usedBannerIds))
+                    continue;
+                $readyBanners[] = $banner;
+            }
+            if (!$readyBanners) {
+                $readyBanners = $this->bannersActive;
+            }
+
+            $banner = $readyBanners[rand(0, (sizeof($readyBanners)) - 1)];
+
+            Yii::$app->getModule('banner')->usedBannerIds[] = $banner->id;
             $banner->increaseViews();
             $renderedBanner = $this->render('bannerWidgetSingle', [
                 'banner' => $banner,
