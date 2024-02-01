@@ -103,6 +103,7 @@ class BannerWidget extends Widget
                 'showSubtitle' => $this->showSubtitle,
             ]);
 
+
             if ($this->showSubLink) {
                 $renderedBanner .= Html::a($banner->title, ['/banner/redirect', 'id' => $banner->id], $this->targetBlank ? ['target' => '_blank'] : []);
                 $renderedBanner .= Html::tag('p', $banner->subtitle);
