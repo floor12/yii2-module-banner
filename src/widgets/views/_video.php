@@ -9,6 +9,7 @@
 
 use floor12\banner\models\AdsBanner;
 use floor12\banner\models\AdsPlace;
+use floor12\files\components\PictureWidget;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\View;
@@ -32,23 +33,43 @@ if ($banner->file_mobile)
     <?php if ($banner->href) { ?><a href="<?= Url::toRoute(['/banner/redirect', 'id' => $banner->id]) ?>"><?php } ?>
 
         <?php if (!$banner->file_mobile): ?>
-            <video id="video<?= $rand ?>" autoplay muted playsinline loop data-id='<?= $banner->id ?>'
-                   poster="<?= $banner->file_desktop->getHref() ?>"
-                   src="<?= $banner->file_desktop->getHref() ?>">
-            </video>
-        <?php else: ?>
-            <video id="video<?= $rand ?>" autoplay muted playsinline loop data-id='<?= $banner->id ?>'
-                   src="<?= $banner->file_mobile->getHref() ?>"
-                   poster="<?= $banner->file_desktop->getPreviewWebPath(1920) ?>"
-                   data-desktop="<?= $banner->file_desktop->getHref() ?>">
-            </video>
+        <video id="video<?= $rand ?>" autoplay muted playsinline loop data-id='<?= $banner->id ?>'
+               poster="<?= $banner->file_desktop->getHref() ?>"
+               src="<?= $banner->file_desktop->getHref() ?>">
+        </video>
+    <?php elseif ($banner->file_mobile->isImage()): ?>
+        <video id="video<?= $rand ?>" class="banner-desktop" autoplay muted playsinline loop data-id='<?= $banner->id ?>'
+               src=""
+               poster="<?= $banner->file_desktop->getPreviewWebPath(1920) ?>"
+               data-desktop="<?= $banner->file_desktop->getHref() ?>">
+        </video>
+
+            <?= PictureWidget::widget([
+                'model' => $banner->file_mobile,
+                'width' => $place->mobile_width,
+                'classPicture' => 'banner-mobile',
+                'alt' => $banner->title,
+            ]) ?>
+
             <script>
                 const videoElement = document.getElementById('video<?= $rand ?>');
                 if (window.innerWidth > 800) {
                     videoElement.src = videoElement.getAttribute('data-desktop');
                 }
             </script>
-        <?php endif; ?>
+            <?php else: ?>
+                <video id="video<?= $rand ?>" autoplay muted playsinline loop data-id='<?= $banner->id ?>'
+                       src="<?= $banner->file_mobile->getHref() ?>"
+                       poster="<?= $banner->file_desktop->getPreviewWebPath(1920) ?>"
+                       data-desktop="<?= $banner->file_desktop->getHref() ?>">
+                </video>
+                <script>
+                    const videoElement = document.getElementById('video<?= $rand ?>');
+                    if (window.innerWidth > 800) {
+                        videoElement.src = videoElement.getAttribute('data-desktop');
+                    }
+                </script>
+            <?php endif; ?>
 
         <?php if ($banner->href){ ?></a><?php } ?>
 
