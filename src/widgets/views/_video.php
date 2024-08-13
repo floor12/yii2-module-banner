@@ -52,9 +52,9 @@ if ($banner->file_mobile)
             ]) ?>
 
             <script>
-                const videoElement = document.getElementById('video<?= $rand ?>');
+                const videoElement<?= $rand ?> = document.getElementById('video<?= $rand ?>');
                 if (window.innerWidth > 800) {
-                    videoElement.src = videoElement.getAttribute('data-desktop');
+                    videoElement<?= $rand ?>.src = videoElement<?= $rand ?>.getAttribute('data-desktop');
                 }
             </script>
             <?php else: ?>
@@ -64,9 +64,9 @@ if ($banner->file_mobile)
                        data-desktop="<?= $banner->file_desktop->getHref() ?>">
                 </video>
                 <script>
-                    const videoElement = document.getElementById('video<?= $rand ?>');
+                    const videoElement<?= $rand ?> = document.getElementById('video<?= $rand ?>');
                     if (window.innerWidth > 800) {
-                        videoElement.src = videoElement.getAttribute('data-desktop');
+                        videoElement<?= $rand ?>.src = videoElement<?= $rand ?>.getAttribute('data-desktop');
                     }
                 </script>
             <?php endif; ?>
